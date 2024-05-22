@@ -34,9 +34,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(305, 133);
+            button1.Location = new Point(132, 176);
             button1.Name = "button1";
-            button1.Size = new Size(159, 66);
+            button1.Size = new Size(513, 44);
             button1.TabIndex = 0;
             button1.Text = "LOGIN";
             button1.UseVisualStyleBackColor = true;
@@ -44,9 +44,9 @@
             // 
             // REGISTER
             // 
-            REGISTER.Location = new Point(305, 270);
+            REGISTER.Location = new Point(132, 226);
             REGISTER.Name = "REGISTER";
-            REGISTER.Size = new Size(159, 66);
+            REGISTER.Size = new Size(513, 44);
             REGISTER.TabIndex = 1;
             REGISTER.Text = "REGISTER";
             REGISTER.UseVisualStyleBackColor = true;

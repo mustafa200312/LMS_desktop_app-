@@ -34,8 +34,6 @@ namespace WinFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connstr = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
-
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Email or password is missing");
@@ -79,6 +77,16 @@ namespace WinFormsApp2
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

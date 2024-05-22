@@ -30,8 +30,18 @@ namespace WinFormsApp2
                 MySqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 fname = dr["Fname"].ToString();
-                this.fname = fname; 
+                this.fname = fname;
                 name_label.Text = fname;
+                dr.Close();
+
+                sql_cmd = "SELECT classroom.classroomName FROM Enroll INNER JOIN classroom ON classroom.classroomId = Enroll.classroomId";
+                cmd = new MySqlCommand(sql_cmd, conn);
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string title = dr["classroomName"].ToString();
+                    listBox1.Items.Add(title);
+                }
                 dr.Close();
             }
             catch (Exception ex)
@@ -47,10 +57,16 @@ namespace WinFormsApp2
 
         private void SUBMIT_Click(object sender, EventArgs e)
         {
-
+            request req = new request(em);
+            req.Show();
         }
 
         private void name_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

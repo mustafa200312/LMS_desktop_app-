@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp2
 {
-    partial class dashboard_student
+    partial class classroom_student
     {
         /// <summary>
         /// Required designer variable.
@@ -28,60 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SUBMIT = new Button();
+            classroom_name = new Label();
             listBox1 = new ListBox();
-            name_label = new Label();
             SuspendLayout();
             // 
-            // SUBMIT
+            // classroom_name
             // 
-            SUBMIT.Location = new Point(39, 374);
-            SUBMIT.Name = "SUBMIT";
-            SUBMIT.Size = new Size(723, 29);
-            SUBMIT.TabIndex = 5;
-            SUBMIT.Text = "REQUEST";
-            SUBMIT.UseVisualStyleBackColor = true;
-            SUBMIT.Click += SUBMIT_Click;
+            classroom_name.AutoSize = true;
+            classroom_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            classroom_name.Location = new Point(55, 41);
+            classroom_name.Name = "classroom_name";
+            classroom_name.Size = new Size(190, 28);
+            classroom_name.TabIndex = 0;
+            classroom_name.Text = "CLASSROOM NAME";
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(39, 99);
+            listBox1.Location = new Point(55, 121);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(723, 244);
-            listBox1.TabIndex = 4;
+            listBox1.Size = new Size(713, 264);
+            listBox1.TabIndex = 1;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // name_label
-            // 
-            name_label.AutoSize = true;
-            name_label.Font = new Font("Segoe UI", 12F);
-            name_label.Location = new Point(39, 47);
-            name_label.Name = "name_label";
-            name_label.Size = new Size(68, 28);
-            name_label.TabIndex = 3;
-            name_label.Text = "NAME";
-            name_label.Click += name_label_Click;
-            // 
-            // dashboard_student
+            // classroom_student
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(SUBMIT);
             Controls.Add(listBox1);
-            Controls.Add(name_label);
-            Name = "dashboard_student";
-            Text = "dashboard_student";
-            Load += dashboard_student_Load;
+            Controls.Add(classroom_name);
+            Name = "classroom_student";
+            Text = "classroom_student";
+            Load += classroom_student_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button SUBMIT;
+        private Label classroom_name;
         private ListBox listBox1;
-        private Label name_label;
     }
 }
