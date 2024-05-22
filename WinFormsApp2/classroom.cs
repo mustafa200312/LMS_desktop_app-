@@ -18,10 +18,11 @@ namespace WinFormsApp2
         string connstr = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
         MySqlDataReader dr;
         string classroomId = "";
-
+        string email = "";
         public classroom(string email, string selectedItem)
         {
             InitializeComponent();
+            this.email = email;
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = connstr;
             conn.Open();
@@ -60,17 +61,20 @@ namespace WinFormsApp2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string email_s = Interaction.InputBox("Enter input name");
+            string email_s = Interaction.InputBox("Enter student email");
             string sql_cmd = "INSERT INTO request(Email,ClassroomId) values(@email,@ClassroomId)";
-            using (MySqlConnection conn = new MySqlConnection(connstr))
+            try
             {
+                MySqlConnection conn = new MySqlConnection(connstr);
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
-                {
-                    cmd.Parameters.AddWithValue("@email", email_s);
-                    cmd.Parameters.AddWithValue("@ClassroomId", classroomId);
-                    cmd.ExecuteNonQuery();
-                }
+                MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
+                cmd.Parameters.AddWithValue("@email", email_s);
+                cmd.Parameters.AddWithValue("@ClassroomId", classroomId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -82,6 +86,13 @@ namespace WinFormsApp2
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedItem = listBox1.SelectedItem.ToString();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            quiz_maker qm = new quiz_maker(email,classroomId);
+            qm.Show();
+
         }
     }
 }

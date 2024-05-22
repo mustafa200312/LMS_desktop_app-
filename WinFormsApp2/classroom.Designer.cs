@@ -125,6 +125,7 @@
             button6.TabIndex = 12;
             button6.Text = "ADD QUIZ";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // classroom
             // 

@@ -78,12 +78,18 @@ namespace WinFormsApp2
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedItem = listBox1.SelectedItem.ToString();
-            if (selectedItem != null)
+            try
             {
-                classroom classroom = new classroom(email, selectedItem);
-                classroom.Show();
-                this.Show();
+                string selectedItem = listBox1.SelectedItem.ToString();
+                if (selectedItem != null)
+                {
+                    classroom classroom = new classroom(email, selectedItem);
+                    classroom.Show();
+                    this.Show();
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
