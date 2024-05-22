@@ -90,8 +90,15 @@ namespace WinFormsApp2
 
         private void button6_Click(object sender, EventArgs e)
         {
-            quiz_maker qm = new quiz_maker(email,classroomId);
+            quiz_maker qm = new quiz_maker(email, classroomId);
             qm.Show();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            show_Students show_Students = new show_Students(classroomId);
+            show_Students.Show();
 
         }
     }
