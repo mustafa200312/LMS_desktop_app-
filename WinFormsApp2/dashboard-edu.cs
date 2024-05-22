@@ -27,28 +27,25 @@ namespace WinFormsApp2
             email = em;
             string sql_cmd = "SELECT * FROM user WHERE email = @Email";
             MySqlDataReader dr;
-            using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
-            {
-                cmd.Parameters.AddWithValue("@Email", email);
-                dr = cmd.ExecuteReader();
-                dr.Read();
-                fname = dr["Fname"].ToString();
-                dr.Close();
-            }
+            MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
+            cmd.Parameters.AddWithValue("@Email", email);
+            dr = cmd.ExecuteReader();
+            dr.Read();
+            fname = dr["Fname"].ToString();
+            dr.Close();
+
             sql_cmd = "select classroomName,classroomId from classroom where  CreatorEmail = @CreatorEmail";
-            using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
+            cmd = new MySqlCommand(sql_cmd, conn);
+            cmd.Parameters.AddWithValue("@CreatorEmail", email);
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                cmd.Parameters.AddWithValue("@CreatorEmail", email);
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    string title = dr["classroomName"].ToString();
-                    string id = dr["classroomId"].ToString();
-                    listBox1.Items.Add(title);
-                }
-                dr.Close();
-                conn.Close();
+                string title = dr["classroomName"].ToString();
+                string id = dr["classroomId"].ToString();
+                listBox1.Items.Add(title);
             }
+            dr.Close();
+            
             name_label.Text = "HI " + fname + " !";
         }
 
@@ -68,16 +65,13 @@ namespace WinFormsApp2
                 MessageBox.Show("INVALID INPUT");
                 return;
             }
-            conn.ConnectionString = connstr;
-            conn.Open();
             string sql_cmd = "INSERT INTO classroom (classroomId, classroomName, CreatorEmail) VALUES (@class_id, @class_Name, @CreatorEmail)";
-            using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
-            {
-                cmd.Parameters.AddWithValue("@class_id", email + dateString);
-                cmd.Parameters.AddWithValue("@class_Name", classroom);
-                cmd.Parameters.AddWithValue("@CreatorEmail", email);
-                cmd.ExecuteNonQuery();
-            }
+            MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
+            cmd.Parameters.AddWithValue("@class_id", email + dateString);
+            cmd.Parameters.AddWithValue("@class_Name", classroom);
+            cmd.Parameters.AddWithValue("@CreatorEmail", email);
+            cmd.ExecuteNonQuery();
+
             listBox1.Items.Add(classroom);
             conn.Close();
         }

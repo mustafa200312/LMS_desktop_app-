@@ -34,8 +34,9 @@ namespace WinFormsApp2
                 name_label.Text = fname;
                 dr.Close();
 
-                sql_cmd = "SELECT classroom.classroomName FROM Enroll INNER JOIN classroom ON classroom.classroomId = Enroll.classroomId";
+                sql_cmd = "SELECT classroom.classroomName FROM Enroll INNER JOIN classroom ON classroom.classroomId = Enroll.classroomId where Enroll.email = @email";
                 cmd = new MySqlCommand(sql_cmd, conn);
+                cmd.Parameters.AddWithValue("@Email", em);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {

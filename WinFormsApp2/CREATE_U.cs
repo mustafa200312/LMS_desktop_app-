@@ -29,40 +29,32 @@ namespace WinFormsApp2
 
         }
 
+        string myConnectionString = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
         private void button1_Click(object sender, EventArgs e)
         {
-            string myConnectionString = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
 
+            MySqlConnection conn = new MySqlConnection(myConnectionString);
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(myConnectionString))
-                {
-                    conn.Open();
+                conn.Open();
 
-                    string sql_cmd = "INSERT INTO user (Email, Password, FName, LName, Type) VALUES (@Email, @Password, @FName, @LName, @Type)";
-                    using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email.Text);
-                        cmd.Parameters.AddWithValue("@Password", password.Text);
-                        cmd.Parameters.AddWithValue("@FName", firstname.Text);
-                        cmd.Parameters.AddWithValue("@LName", lastname.Text);
-                        cmd.Parameters.AddWithValue("@Type", comboBox1.Text);
-                        cmd.ExecuteNonQuery();
-                    }
-                    conn.Close();
-                }
-                using (MySqlConnection conn = new MySqlConnection(myConnectionString))
-                {
-                    conn.Open();
-                    string sql_cmd = "INSERT INTO " + comboBox1.Text + "(Email, FName, LName) VALUES (@Email,@FName, @LName)";
-                    using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Email", email.Text);
-                        cmd.Parameters.AddWithValue("@FName", firstname.Text);
-                        cmd.Parameters.AddWithValue("@LName", lastname.Text);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                string sql_cmd = "INSERT INTO user (Email, Password, FName, LName, Type) VALUES (@Email, @Password, @FName, @LName, @Type)";
+                MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
+                cmd.Parameters.AddWithValue("@Email", email.Text);
+                cmd.Parameters.AddWithValue("@Password", password.Text);
+                cmd.Parameters.AddWithValue("@FName", firstname.Text);
+                cmd.Parameters.AddWithValue("@LName", lastname.Text);
+                cmd.Parameters.AddWithValue("@Type", comboBox1.Text);
+                cmd.ExecuteNonQuery();
+
+
+                sql_cmd = "INSERT INTO " + comboBox1.Text + "(Email, FName, LName) VALUES (@Email,@FName, @LName)";
+                cmd = new MySqlCommand(sql_cmd, conn);
+                cmd.Parameters.AddWithValue("@Email", email.Text);
+                cmd.Parameters.AddWithValue("@FName", firstname.Text);
+                cmd.Parameters.AddWithValue("@LName", lastname.Text);
+                cmd.ExecuteNonQuery();
+
                 LOGIN login = new LOGIN();
                 login.Show();
                 this.Hide();

@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             course_label = new Label();
             listBox1 = new ListBox();
             label1 = new Label();
-            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            button5 = new Button();
+            button6 = new Button();
             SuspendLayout();
             // 
             // course_label
@@ -50,11 +53,15 @@
             // 
             // listBox1
             // 
+            listBox1.Font = new Font("Segoe UI", 14F);
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(42, 176);
+            listBox1.ItemHeight = 31;
+            listBox1.Items.AddRange(new object[] { "Sections", "Quizzes", "Tasks" });
+            listBox1.Location = new Point(42, 231);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(706, 244);
+            listBox1.Size = new Size(706, 128);
             listBox1.TabIndex = 1;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -66,15 +73,6 @@
             label1.TabIndex = 2;
             label1.Text = "SECTIONS";
             label1.Click += label1_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(386, 96);
-            button4.Name = "button4";
-            button4.Size = new Size(178, 29);
-            button4.TabIndex = 10;
-            button4.Text = "ADD SECTION";
-            button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -104,12 +102,37 @@
             button1.Text = "SHOW STUDENTS";
             button1.UseVisualStyleBackColor = true;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // button5
+            // 
+            button5.Location = new Point(386, 96);
+            button5.Name = "button5";
+            button5.Size = new Size(178, 29);
+            button5.TabIndex = 11;
+            button5.Text = "ADD TASK";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(570, 146);
+            button6.Name = "button6";
+            button6.Size = new Size(178, 29);
+            button6.TabIndex = 12;
+            button6.Text = "ADD QUIZ";
+            button6.UseVisualStyleBackColor = true;
+            // 
             // classroom
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button4);
+            Controls.Add(button6);
+            Controls.Add(button5);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -128,9 +151,11 @@
         private Label course_label;
         private ListBox listBox1;
         private Label label1;
-        private Button button4;
         private Button button3;
         private Button button2;
         private Button button1;
+        private ContextMenuStrip contextMenuStrip1;
+        private Button button5;
+        private Button button6;
     }
 }

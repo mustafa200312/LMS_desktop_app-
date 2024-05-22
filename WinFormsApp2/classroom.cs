@@ -73,5 +73,15 @@ namespace WinFormsApp2
                 }
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = listBox1.SelectedItem.ToString();
+        }
     }
 }
