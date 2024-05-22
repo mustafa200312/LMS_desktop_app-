@@ -14,27 +14,43 @@ namespace WinFormsApp2
 {
     public partial class dashboard_student : Form
     {
-        string connstr = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
-        MySqlConnection conn = new MySqlConnection();
+        static string connectionString = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
+        MySqlConnection conn = new MySqlConnection(connectionString);
         string em, fname;
         public dashboard_student(string em)
         {
             InitializeComponent();
-            this.em = em;
-            string sql_cmd = "SELECT * FROM user WHERE email = @Email";
-            MySqlDataReader dr;
-            using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
+            try
             {
+                conn.Open();
+                this.em = em;
+                string sql_cmd = "SELECT * FROM user WHERE email = @Email";
+                MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
                 cmd.Parameters.AddWithValue("@Email", em);
-                dr = cmd.ExecuteReader();
+                MySqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 fname = dr["Fname"].ToString();
                 this.fname = fname; 
+                name_label.Text = fname;
                 dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void dashboard_student_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SUBMIT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void name_label_Click(object sender, EventArgs e)
         {
 
         }

@@ -41,6 +41,7 @@
             SUBMIT.TabIndex = 5;
             SUBMIT.Text = "REQUEST";
             SUBMIT.UseVisualStyleBackColor = true;
+            SUBMIT.Click += SUBMIT_Click;
             // 
             // listBox1
             // 
@@ -59,6 +60,7 @@
             name_label.Size = new Size(68, 28);
             name_label.TabIndex = 3;
             name_label.Text = "NAME";
+            name_label.Click += name_label_Click;
             // 
             // dashboard_student
             // 

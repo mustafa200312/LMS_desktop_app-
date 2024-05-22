@@ -37,14 +37,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(250, 126);
+            textBox1.Location = new Point(256, 173);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(307, 27);
             textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(250, 254);
+            textBox2.Location = new Point(256, 227);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(307, 27);
             textBox2.TabIndex = 1;
@@ -52,26 +52,26 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(293, 70);
+            label2.Location = new Point(256, 150);
             label2.Name = "label2";
             label2.Size = new Size(46, 20);
             label2.TabIndex = 3;
-            label2.Text = "email";
+            label2.Text = "Email";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(377, 215);
+            label3.Location = new Point(256, 204);
             label3.Name = "label3";
-            label3.Size = new Size(72, 20);
+            label3.Size = new Size(70, 20);
             label3.TabIndex = 4;
-            label3.Text = "password";
+            label3.Text = "Password";
             // 
             // button1
             // 
-            button1.Location = new Point(360, 317);
+            button1.Location = new Point(256, 260);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(307, 29);
             button1.TabIndex = 5;
             button1.Text = "submit";
             button1.UseVisualStyleBackColor = true;

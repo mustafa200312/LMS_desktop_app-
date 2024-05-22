@@ -29,6 +29,9 @@ namespace WinFormsApp2
 
         }
 
+        static string connectionString = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
+        MySqlConnection conn = new MySqlConnection(connectionString);
+
         private void button1_Click(object sender, EventArgs e)
         {
             string connstr = "server=127.0.0.1;uid=root;pwd=123987;database=lms";
@@ -41,37 +44,31 @@ namespace WinFormsApp2
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connstr))
+                conn.Open();
+                string sql_cmd = "SELECT count(*) as num,type FROM user WHERE email = @Email AND password = @Password";
+                MySqlCommand cmd = new MySqlCommand(sql_cmd, conn);
+                cmd.Parameters.AddWithValue("@Email", textBox1.Text);
+                cmd.Parameters.AddWithValue("@Password", textBox2.Text);
+                MySqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                dr.Read();
+                String v = dr["num"].ToString();
+                int count = Convert.ToInt32(v);
+                if (count == 1)
                 {
-                    conn.Open();
-
-                    string sql_cmd = "SELECT count(*) as num,type FROM user WHERE email = @Email AND password = @Password";
-                    using (MySqlCommand cmd = new MySqlCommand(sql_cmd, conn))
+                    string x = dr["type"].ToString();
+                    if (x == "educator")
                     {
-                        cmd.Parameters.AddWithValue("@Email", textBox1.Text);
-                        cmd.Parameters.AddWithValue("@Password", textBox2.Text);
-                        MySqlDataReader dr;
-                        dr = cmd.ExecuteReader();
-                        dr.Read();
-                        String v = dr["num"].ToString();
-                        int count = Convert.ToInt32(v);
-                        if (count == 1)
-                        {
-                            string x = dr["type"].ToString();
-                            if (x == "educator")
-                            {
 
-                                dashboard_edu form3 = new dashboard_edu(textBox1.Text);
-                                form3.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                dashboard_student form2 = new dashboard_student(textBox1.Text);
-                                form2.Show();
-                                this.Hide();
-                            }
-                        }
+                        dashboard_edu form3 = new dashboard_edu(textBox1.Text);
+                        form3.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        dashboard_student form2 = new dashboard_student(textBox1.Text);
+                        form2.Show();
+                        this.Hide();
                     }
                 }
             }
@@ -79,6 +76,11 @@ namespace WinFormsApp2
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
